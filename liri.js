@@ -1,6 +1,5 @@
 var inquirer = require('inquirer');
 var fs = require('fs');
-var request = require('request');
 
 inquirer.prompt([  //take in the following commands(choices)
 	{
@@ -68,4 +67,31 @@ function spotify(){
 			}
 		})
 	})
+}
+
+function movieThis(){
+	var request = require('request');
+	var myMovie = new request;
+
+	inquirer.prompt([
+	{
+		name: 'movie',
+		message: 'Pick a movie',
+		type: 'input'
+	}
+	]).then(function(user){
+		//console.log(user.choice);
+		var queryURL = 'http://www.omdbapi.com/?t=' + user.choice + '&y=plot=short&r=json&tomatoes=true';
+
+		request(queryURL, function(error, data, body){
+			console.log('Title: ', JSON.parse(body).Title);
+			console.log('Release Date: ', JSON.parse(body).Released);
+			console.log('Plot: ', JSON.parse(body).Plot);
+			console.log('Country: ', JSON.parse(body).Country);
+			console.log('Language: ', JSON.parse(body).Language);
+			console.log('Actors: ', JSON.parse(body).Actors);
+			console.log('Tomato Rating: ', JSON.parse(body).tomatoRating);
+			console.log('Tomato URL: ', JSON.parse(body).tomatoURL);
+		})
+	}
 }
