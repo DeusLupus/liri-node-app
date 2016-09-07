@@ -23,7 +23,7 @@ function mytweets(){
 	//console.log('we get tweets!')
 	var Key = require('./keys.js');
 	var Twitter = require('twitter');
-	var params = {screen_name: deuslupus};
+	var params = {screen_name: 'deuslupus'};
 	var client = new Twitter(Key.twitterKeys);
 	client.get('statuses/user_timeline', params, function(error, tweets, response){
 		if (error){
@@ -31,7 +31,7 @@ function mytweets(){
 		}
 		console.log(tweets);
 		tweets.forEach(function(tweet){
-			console.log(tweet.created_at+": "+ tweet.text);
+			console.log(tweet.created_at + ": "+ tweet.text);
 		})
 	});
 }
@@ -93,5 +93,5 @@ function movieThis(){
 			console.log('Tomato Rating: ', JSON.parse(body).tomatoRating);
 			console.log('Tomato URL: ', JSON.parse(body).tomatoURL);
 		})
-	}
+	})
 }
